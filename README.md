@@ -1,3 +1,31 @@
+# React-Web
+
+React is fundamentally "unopinionated", a library not a framework, React itself does not include many of the React-specific libraries that we are going to need for most of web projects. That means, in order to build complete React applications, you will need to choose these packages and tools on your own (third party).
+
+React's flexibility is a freedom of making our own choice. However, Sometimes we just need to bootstrap a web app with all basic dependencies 🤝. I Wish React was a framework 🫣. 
+
+Let's build it 👨‍🔧
+
+
+Create react typescript project
+
+    npx create-react-app React-Web --template typescript
+
+
+Install react router dom v6
+
+    npm install --save react-router-dom@6
+
+[React Router](https://reactrouter.com/en/main/start/overview)
+
+Add "@babel/plugin-proposal-private-property-in-object" to
+your devDependencies
+
+    npm install --save-dev @babel/plugin-proposal-private-property-in-object
+        
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

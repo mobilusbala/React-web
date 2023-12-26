@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { AuthContext } from './context/AuthContext';
+import { useAuth } from './hooks/useAuth';
+import { User, useUser } from './hooks/useUser';
+import { Home } from './pages/Home';
+import Login from './pages/Login';
+import { Logout } from './pages/Logout';
+import MainRoutes from './route/MainRoutes';
+import { Navbar } from './components/Navbar/Navbar';
 
-function App() {
+const App = () => {
+  const { user, login, logout } = useAuth();
+
+  const setUser = (user : User | null) => {
+   if(user) login(user)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <AuthContext.Provider value={{ user, setUser }}>
+         <Navbar/>
+         <MainRoutes/>
+      </AuthContext.Provider>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
