@@ -32,16 +32,20 @@ const App = () => {
     ...theme.mixins.toolbar,
   }));
 
+
   return (
     <BrowserRouter>
       <AuthContext.Provider value={{ user, setUser }}>
-        <Box sx={{ display: 'flex'} }>
+      <MainRoutes />
+{/*         <Box sx={{ display: 'flex'} }>
           <SideBar isOpen={open} handleDrawerClose={handleDrawerClose} />
           <Navbar handleDrawerOpen={handleDrawerOpen} isOpen={open} />
-           <div style={{paddingTop : '50px'}}>
+           <div style={{marginTop : '70px'}}>
               <MainRoutes />
            </div>
-        </Box>
+        </Box> */}
+
+
       </AuthContext.Provider>
     </BrowserRouter>
   );

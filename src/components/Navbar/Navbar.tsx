@@ -1,11 +1,16 @@
 import Toolbar from '@mui/material/Toolbar';
-import MenuIcon from '@mui/icons-material/Menu';
-import IconButton from '@mui/material/IconButton';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
 import Typography from '@mui/material/Typography';
 import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import "./Navbar.css"
 import { drawerWidth } from '../../pages/Home';
+import { useState } from 'react';
+import { Box, IconButton } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import { AccountCircle } from '@mui/icons-material';
+import { green } from '@mui/material/colors';
 
 
 type Props = {
@@ -38,9 +43,24 @@ type Props = {
 
  const Navbar = (props : Props) => {
 
+  const [auth, setAuth] = useState(true);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAuth(event.target.checked);
+  };
+
+  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
     return (
-   
-        <AppBar position="fixed" open={props.isOpen}>
+      <Box sx={{ flexGrow: 1 }}>
+       <AppBar position="fixed" open={props.isOpen}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -54,12 +74,44 @@ type Props = {
           >
            <MenuIcon /> 
           </IconButton> 
-          <Typography variant="h6" noWrap component="div">
+          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
             Mini variant drawer
           </Typography>
+
+          {auth && (
+            <div style={{ justifyContent: 'flex-end'}}>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>My account</MenuItem>
+              </Menu>
+            </div> )}
         </Toolbar>
       </AppBar>
-
+     </Box>
     )
 }
 
