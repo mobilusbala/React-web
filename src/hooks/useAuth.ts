@@ -3,15 +3,11 @@ import { useUser, User } from "./useUser";
 import { useLocalStorage } from "./useLocalStorage";
 
 export const useAuth = () => {
-  const { user, addUser, removeUser } = useUser();
-  const { getItem } = useLocalStorage();
+  const { user, setUser,addUser,loadUser, removeUser } = useUser();
 
   useEffect(() => {
-    const user = getItem("user");
-    if (user) {
-      addUser(JSON.parse(user));
-    }
-  }, []);
+    loadUser();
+  }, []);  
 
   const login = (user: User) => {
     addUser(user);
@@ -21,5 +17,5 @@ export const useAuth = () => {
     removeUser();
   };
 
-  return { user, login, logout };
+  return { user, setUser , login, logout };
 };

@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { AuthContext } from './context/AuthContext';
+import { AuthContext, AuthProvider } from './contexts/AuthContext';
 import { useAuth } from './hooks/useAuth';
 import { User, useUser } from './hooks/useUser';
-import MainRoutes from './route/MainRoutes';
+import MainRoutes from './routes/MainRoutes';
 import { Box } from '@mui/material';
 import SideBar from './components/SideBar/SideBar';
 import Navbar from './components/Navbar/Navbar';
@@ -35,18 +35,16 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <AuthContext.Provider value={{ user, setUser }}>
-      <MainRoutes />
-{/*         <Box sx={{ display: 'flex'} }>
+      <AuthProvider>
+      <MainRoutes />      
+        {/* <Box sx={{ display: 'flex'} }>
           <SideBar isOpen={open} handleDrawerClose={handleDrawerClose} />
           <Navbar handleDrawerOpen={handleDrawerOpen} isOpen={open} />
            <div style={{marginTop : '70px'}}>
               <MainRoutes />
            </div>
         </Box> */}
-
-
-      </AuthContext.Provider>
+      </AuthProvider>
     </BrowserRouter>
   );
 };

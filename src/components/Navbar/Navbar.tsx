@@ -11,40 +11,42 @@ import { Box, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { AccountCircle } from '@mui/icons-material';
 import { green } from '@mui/material/colors';
+import { useAuth } from '../../hooks/useAuth';
 
 
 type Props = {
-    handleDrawerOpen: () => void;
-    isOpen: boolean
-  }
+  handleDrawerOpen: () => void;
+  isOpen: boolean
+}
 
-  interface AppBarProps extends MuiAppBarProps {
-    open?: boolean;
-  }  
+interface AppBarProps extends MuiAppBarProps {
+  open?: boolean;
+}
 
-  const AppBar = styled(MuiAppBar, {
-    shouldForwardProp: (prop) => prop !== 'open',
-  })<AppBarProps>(({ theme, open }) => ({
-    zIndex: theme.zIndex.drawer + 1,
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== 'open',
+})<AppBarProps>(({ theme, open }) => ({
+  zIndex: theme.zIndex.drawer + 1,
+  transition: theme.transitions.create(['width', 'margin'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
+      duration: theme.transitions.duration.enteringScreen,
     }),
-    ...(open && {
-      marginLeft: drawerWidth,
-      width: `calc(100% - ${drawerWidth}px)`,
-      transition: theme.transitions.create(['width', 'margin'], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-    }),
-  }));
-  
+  }),
+}));
 
- const Navbar = (props : Props) => {
+
+const Navbar = (props: Props) => {
 
   const [auth, setAuth] = useState(true);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const { logout, user } = useAuth();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAuth(event.target.checked);
@@ -58,9 +60,9 @@ type Props = {
     setAnchorEl(null);
   };
 
-    return (
-      <Box sx={{ flexGrow: 1 }}>
-       <AppBar position="fixed" open={props.isOpen}>
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="fixed" open={props.isOpen}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -72,14 +74,19 @@ type Props = {
               ...(props.isOpen && { display: 'none' }),
             }}
           >
-           <MenuIcon /> 
-          </IconButton> 
+            <MenuIcon />
+          </IconButton>
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
             Mini variant drawer
           </Typography>
 
           {auth && (
-            <div style={{ justifyContent: 'flex-end'}}>
+            <div style={{ display : 'flex',justifyContent: 'flex-end' }}>
+
+              <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1, marginRight: 5, marginTop: 1, alignItems: 'center' }}>
+               {user?.name}
+              </Typography>
+
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -106,13 +113,13 @@ type Props = {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={logout}>Logout</MenuItem>
               </Menu>
-            </div> )}
+            </div>)}
         </Toolbar>
       </AppBar>
-     </Box>
-    )
+    </Box>
+  )
 }
 
 export default Navbar;

@@ -1,10 +1,11 @@
 import { Outlet, Navigate } from 'react-router-dom'
 import MainLayout from '../layouts/MainLayout'
+import { useAuth } from '../hooks/useAuth';
 
 const PrivateRoutes = () => {
-    let auth = {'token':true}
+    const { user } = useAuth();
     return(
-        auth.token ?  <MainLayout> <Outlet/> </MainLayout>  : <Navigate to="/login"/>
+        user ?  <MainLayout> <Outlet/> </MainLayout>  : <Navigate to="/login"/>
     )
 }
 
