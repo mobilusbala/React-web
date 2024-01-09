@@ -26,7 +26,9 @@ export const useUser = () => {
     const user = getItem("user");
     if (user) {
       addUser(JSON.parse(user));
-    } 
+    } else {
+      setUser(null);
+    }
   }
 
   const removeUser = () => {

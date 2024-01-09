@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useAuth } from '../hooks/useAuth';
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 // TODO remove, this demo shouldn't need to reset the theme.
@@ -23,6 +23,7 @@ export default function SignIn() {
 
   const { login ,user } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogin = () => {
     login({
@@ -33,7 +34,11 @@ export default function SignIn() {
 
    console.log('-----user login-------',user);
 
-   navigate("/");
+   if(location.state?.from){
+    navigate(location.state?.from);
+   }else {
+    navigate("/");
+   }
   };
   
 

@@ -27,7 +27,17 @@ Install Material UI [material-ui](https://mui.com/material-ui/)
 
 Install MUI Icons 
 
-    npm install @mui/icons-material   
+    npm install @mui/icons-material  
+
+ ### Features   
+
+1. UI  -->  Matrial UI
+2. Routing --> React-router-6 (public , private routes , redirect after login)
+3. HTTP --> Axios 
+4. Managing App state --> Redux
+5. Form validation 
+6. Animations 
+
 
 
 ## Available Scripts
