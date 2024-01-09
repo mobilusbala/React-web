@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+  background-color: #fefefe;
+  /* height: 100%; */
+  height: calc(100vh - 64px); 
+  width: 100%;
+  scroll-padding-top: 70px; 
 }
 
 .App-logo {
