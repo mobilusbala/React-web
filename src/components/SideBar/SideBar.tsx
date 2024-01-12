@@ -12,7 +12,11 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { drawerWidth } from '../../pages/Home';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import HomeIcon from '@mui/icons-material/Home';
+import MiscellaneousServicesIcon from '@mui/icons-material/MiscellaneousServices';
+import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
+import InfoIcon from '@mui/icons-material/Info';
 
 type SideBarProps = {
   isOpen: boolean
@@ -82,8 +86,7 @@ function SideBar(props: SideBarProps) {
     </DrawerHeader>
     <Divider />
     <List>
-      {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-        <ListItem key={text} disablePadding sx={{ display: 'block' }}>
+        <ListItem key="Home" disablePadding sx={{ display: 'block' }} component={Link} to="/">
           <ListItemButton
             sx={{
               minHeight: 48,
@@ -98,38 +101,80 @@ function SideBar(props: SideBarProps) {
                 justifyContent: 'center',
               }}
             >
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+            <HomeIcon />
             </ListItemIcon>
-            <ListItemText primary={<NavLink to="/about"> About   </NavLink>} sx={{ opacity: props.isOpen ? 1 : 0 }} />
+            <ListItemText primary="Home" sx={{ opacity: props.isOpen ? 1 : 0 }} />
           </ListItemButton>
         </ListItem>
-      ))}
+        <Divider />
+        <ListItem key="Services" disablePadding sx={{ display: 'block' }} component={Link} to="/services">
+          <ListItemButton
+            sx={{
+              minHeight: 48,
+              justifyContent: props.isOpen ? 'initial' : 'center',
+              px: 2.5,
+            }}
+          >
+            <ListItemIcon
+              sx={{
+                minWidth: 0,
+                mr: props.isOpen ? 3 : 'auto',
+                justifyContent: 'center',
+              }}
+            >
+            <MiscellaneousServicesIcon />
+            </ListItemIcon>
+            <ListItemText primary="Services" sx={{ opacity: props.isOpen ? 1 : 0 }} />
+          </ListItemButton>
+        </ListItem>
+        <Divider />
+        <ListItem key="About" disablePadding sx={{ display: 'block' }} component={Link} to="/about">
+          <ListItemButton
+            sx={{
+              minHeight: 48,
+              justifyContent: props.isOpen ? 'initial' : 'center',
+              px: 2.5,
+            }}
+          >
+            <ListItemIcon
+              sx={{
+                minWidth: 0,
+                mr: props.isOpen ? 3 : 'auto',
+                justifyContent: 'center',
+              }}
+            >
+            <InfoIcon />
+            </ListItemIcon>
+            <ListItemText primary="About" sx={{ opacity: props.isOpen ? 1 : 0 }} />
+          </ListItemButton>
+        </ListItem>
+
+        <Divider />
+        <ListItem key="Contact" disablePadding sx={{ display: 'block' }} component={Link} to="/contact">
+          <ListItemButton
+            sx={{
+              minHeight: 48,
+              justifyContent: props.isOpen ? 'initial' : 'center',
+              px: 2.5,
+            }}
+          >
+            <ListItemIcon
+              sx={{
+                minWidth: 0,
+                mr: props.isOpen ? 3 : 'auto',
+                justifyContent: 'center',
+              }}
+            >
+            <ContactPhoneIcon />
+            </ListItemIcon>
+            <ListItemText primary="Contact" sx={{ opacity: props.isOpen ? 1 : 0 }} />
+          </ListItemButton>
+        </ListItem>
+
     </List>
     <Divider />
-    <List>
-      {['All mail', 'Trash', 'Spam'].map((text, index) => (
-        <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-          <ListItemButton
-            sx={{
-              minHeight: 48,
-              justifyContent: props.isOpen ? 'initial' : 'center',
-              px: 2.5,
-            }}
-          >
-            <ListItemIcon
-              sx={{
-                minWidth: 0,
-                mr: props.isOpen ? 3 : 'auto',
-                justifyContent: 'center',
-              }}
-            >
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={<NavLink to="/services"> Services</NavLink>} sx={{ opacity: props.isOpen ? 1 : 0 }} />
-          </ListItemButton>
-        </ListItem>
-      ))}
-    </List>
+    
+
   </Drawer>
   )
 }

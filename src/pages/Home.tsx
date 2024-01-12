@@ -4,48 +4,18 @@ import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
 
 import { Typography } from '@mui/material';
-import apiController from '../services/api.service';
-import { AxiosError, AxiosResponse } from 'axios';
-import { useEffect, useState } from 'react';
 
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import Divider from '@mui/material/Divider';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
+
+
 
 
 export const drawerWidth = 240;
 
-type Products = {
-  id:string
-  name:string
-  price: number
-  image: string
-  company: string
-}
 
 
 const Home = () => {
 
-  const [products , setProducts] = useState<Products[]>([]);
 
-  const fetchData = async () => {
-    try {
-      const resp1 : Array<Products> = await apiController('https://course-api.com/react-store-products');
-      console.log(resp1);
-      setProducts(resp1);
-      //const resp2 = await axios(randomUserUrl);
-      //console.log(resp2);
-    } catch (error : AxiosError | any) {
-      console.log(error.response);
-    }
-  };
-
- useEffect(() => {
-    fetchData();
-  }, []);
 
 
   return (    
@@ -79,40 +49,6 @@ const Home = () => {
           posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
       </Box>
-
-      <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-
-      {products.map((item, index) => (
-             <>
-             <ListItem alignItems="flex-start"  key={item.id}>
-             <ListItemAvatar>
-               <Avatar alt="Remy Sharp" src={item.image} />
-             </ListItemAvatar>
-             <ListItemText
-               primary= {item.name}
-               secondary={
-                 <React.Fragment>
-                   <Typography
-                     sx={{ display: 'inline' }}
-                     component="span"
-                     variant="body2"
-                     color="text.primary"
-                   >
-                     {item.company}
-                   </Typography>
-                   {` Price : - ${item.price}`}
-                 </React.Fragment>
-               }
-             />
-           </ListItem>
-           <Divider variant="inset" component="li" />
-           </>
-      ))}
-
-
-
-
-      </List>
   </>
   
   );
