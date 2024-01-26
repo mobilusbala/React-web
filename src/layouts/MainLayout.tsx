@@ -21,7 +21,7 @@ const MainLayout  : React.FC<Props> = ({ children }: Props) => {
 
 
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex', alignItems : 'flex-start'}}>
             <SideBar isOpen={open} handleDrawerClose={handleDrawerClose} />
             <Navbar handleDrawerOpen={handleDrawerOpen} isOpen={open} />
             <div style={{ marginTop: '70px' }}>

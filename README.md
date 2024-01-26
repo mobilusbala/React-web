@@ -29,6 +29,10 @@ Install MUI Icons
 
     npm install @mui/icons-material  
 
+Install Axios
+
+    npm install axios
+
  ### Features   
 
 1. UI  -->  Matrial UI

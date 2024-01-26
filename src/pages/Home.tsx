@@ -6,12 +6,20 @@ import MuiDrawer from '@mui/material/Drawer';
 import { Typography } from '@mui/material';
 
 
+
+
+
 export const drawerWidth = 240;
 
 
-export default function MiniDrawer() {
+
+const Home = () => {
+
+
+
 
   return (    
+    <>
      <Box component="main" sx={{ flexGrow: 1, p: 3 }} >
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -41,6 +49,11 @@ export default function MiniDrawer() {
           posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
       </Box>
+  </>
   
   );
+
+ 
 }
+
+export default Home;

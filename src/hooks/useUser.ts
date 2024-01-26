@@ -16,10 +16,8 @@ export const useUser = () => {
 
 
   const addUser = (user1: User) => {
-    console.log("getuser 1 --->",user);
     setUser(user1);
     setItem("user", JSON.stringify(user1));
-    console.log("getuser 2 --->",user);
   };
 
   const loadUser = () => {
