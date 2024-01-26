@@ -33,17 +33,21 @@ Install Axios
 
     npm install axios
 
+Install Redux Toolkit [Redux Toolkit] (https://redux-toolkit.js.org/tutorials/typescript)    
+
+    npm install @reduxjs/toolkit react-redux
+
  ### Features   
 
 1. UI  -->  Matrial UI
 2. Routing --> React-router-6 (public , private routes , redirect after login)
 3. HTTP --> Axios 
-4. Managing App state --> Redux
+4. Managing App state --> Redux , Redux Toolkit
 5. Form validation 
 6. Animations 
 
 
-
+ 
 ## Available Scripts
 
 ### Runs the app in the development mode

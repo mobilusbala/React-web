@@ -21,10 +21,10 @@ const MainLayout  : React.FC<Props> = ({ children }: Props) => {
 
 
     return (
-        <Box sx={{ display: 'flex', alignItems : 'flex-start'}}>
+        <Box sx={{ display: 'flex'}}>
             <SideBar isOpen={open} handleDrawerClose={handleDrawerClose} />
             <Navbar handleDrawerOpen={handleDrawerOpen} isOpen={open} />
-            <div style={{ marginTop: '70px' }}>
+            <div style={{ marginTop: '70px' , width: '100%' }}>
                 {children}
             </div> 
         </Box>
